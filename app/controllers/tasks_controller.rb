@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-    def index
+  def index
       @tasks = Task.all
   end
 
@@ -20,6 +20,7 @@ class TasksController < ApplicationController
     else
       flash.now[:danger] = 'Task が投稿されませんでした'
       render :new
+    end
   end
 
   def edit
@@ -39,11 +40,16 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    
+    flash[:succes] = "Taskは正常に削除されました"
+    redirect_to tasks_url
   end
-end
 
-Private
+  private
 
-def task_params
+  def task_params
     params.require(:task).permit(:content)
   end
+end
