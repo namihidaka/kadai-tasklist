@@ -3,7 +3,6 @@ class TasksController < ApplicationController
   def index
       @tasks = Task.all
   end
-task
   def show
   end
 
@@ -45,6 +44,7 @@ task
   end
 
   private
+  
   def set_task
     @task = Task.find(params[:id])
   end
